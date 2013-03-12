@@ -49,15 +49,15 @@ if(count($items)):
 
 				foreach($all_prods as $ap):
 					$product_ID = get_post_meta($ap->ID, "${prefix}product_id", true);
-					if ($product_ID == $item_ID):
-						$item_image = get_the_post_thumbnail($ap->ID, 'medium');
+					if ($item_ID == $product_ID[0] && has_post_thumbnail($ap->ID)):
+						$item_image = get_the_post_thumbnail($ap->ID, array(45, 45));
 						break;
 					endif;
 				endforeach;
 			?>
 				<li>
 					<a href="<?php echo get_permalink($cartPage->ID); ?>">
-					<img class="cart-items" src="<?php echo $item_image ?>" width="45" height="45" alt="" id="cart-items-<?php echo $item_ID; ?>">
+						<?php echo $item_image ?>
 						<p>
 							<?php echo $item_name; ?><br />
 							Quantity: <?php echo $item->getQuantity(); ?>
