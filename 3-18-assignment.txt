@@ -1,0 +1,8 @@
+Create a page that has all magazine contributors listed with their name and title. Requirements: 
+	Add a field to user profiles to be able to add a "contributor type"
+	On the new page template, Iterate over all users and if the "contributor" usermeta is defined then output:
+		
+<a href="http://bullettmedia.com/?s=$contributor+name" class="contributor">
+	<h3>$contributor_name</h3>
+	<p>$contributor_title</p>
+</a>
