@@ -2,7 +2,12 @@ Create a page that has all magazine contributors listed with their name and titl
 	Add a field to user profiles to be able to add a "contributor type"
 	On the new page template, Iterate over all users and if the "contributor" usermeta is defined then output:
 		
-<a href="http://bullettmedia.com/?s=$contributor+name" class="contributor">
-	<h3>$contributor_name</h3>
-	<p>$contributor_title</p>
-</a>
+	<a href="http://bullettmedia.com/?s=$contributor+name" class="contributor">
+		<h3>$contributor_name</h3>
+		<p>$contributor_title</p>
+	</a>
+
+	
+	Create a new file "page-contributors.php" for the template.
+	
+	Add the logic for the extra user field to "functions.php" in a clearly labeled area.
