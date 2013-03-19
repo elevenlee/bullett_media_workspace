@@ -1,6 +1,37 @@
 <?php
 
-include 'product-meta-box.php';
+include_once 'product-meta-box.php';
+
+/* ADD USER PROFILE EXTRA FIELDS */
+/* ------------------------------------------------------------------------------------ */
+add_action( 'show_user_profile', 'user_profile_extra_fields' );
+add_action( 'edit_user_profile', 'user_profile_extra_fields' );
+function user_profile_extra_fields( $user ) {
+?>
+	<h3><?php _e("Extra profile information", "blank"); ?></h3>
+	<table class="form-table">
+		<tr>
+			<th><label for="title"><?php _e("Title"); ?></label></th>
+			<td>
+				<input type="text" name="title" id="title" class="regular-text"
+					value="<?php echo esc_attr( get_the_author_meta( 'title', $user->ID ) ); ?>" /><br />
+				<span class="description"><?php _e("Please enter your title."); ?></span>
+			</td>
+		</tr>
+	</table>
+<?php
+}
+
+/* SAVE USER PROFILE EXTRA FIELDS */
+/* ------------------------------------------------------------------------------------ */
+add_action( 'personal_options_update', 'user_profile_save_extra_fields' );
+add_action( 'edit_user_profile_update', 'user_profile_save_extra_fields' );
+function user_profile_save_extra_fields( $user_id ) {
+	if ( !current_user_can( 'edit_user', $user_id ) ) {
+		return false;
+	}
+	update_user_meta( $user_id, 'title', $_POST['title'] );
+}
 
 /* ADDED BY FLAT */
 /* ------------------------------------------------------------------------------------ */
@@ -34,6 +65,22 @@ function products_taxonomy_list($post_id = null) { // derived from 'function cat
 		}
 	}
 }
+
+function products_register_meta_boxes()
+{
+	// Make sure there's no errors when the plugin is deactivated or
+	// during upgrade
+	if (!class_exists('RW_Meta_Box'))
+		return;
+	
+	global $meta_boxes;
+	foreach ($meta_boxes as $meta_box)
+	{
+		new RW_Meta_Box($meta_box);
+	}
+}
+// Hook to 'admin_init' to make sure the meta box class is loaded before
+add_action('admin_init', 'products_register_meta_boxes');
 
 // http://www.onextrapixel.com/2012/05/18/the-practical-guide-to-multiple-relationships-between-posts-in-wordpress/
 function my_connection_types() { // Used to make post to post relations between products

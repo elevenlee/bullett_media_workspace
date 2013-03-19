@@ -115,7 +115,7 @@ $related_prods = get_posts($related_args);
 									$slide_w = 480;
 									$slide_h = ceil($slide_h);
 									echo '<a href="'.$slide[0].'" class="jqzoom">';
-									echo '<img src="'.$slide[0].'" width="480" height="'.$slide_h.'" class="attachment-384high" />';
+									echo '	<img src="'.$slide[0].'" width="480" height="'.$slide_h.'" class="attachment-384high" />';
 									echo '</a>';
 									if ($attachment->post_excerpt != "null") :
 										echo "<p>".$attachment->post_excerpt."</p>";

@@ -37,7 +37,7 @@
 		$tagline = substr( $tagline, 0, -2 );
 		echo( $tagline ); ?>">
 	<link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/css/style-min-3.0.css">
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/jquery.jqzoom.css">
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/jquery.jqzoom.css">
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<?php if ( 'slideshow' == get_post_type() ) { ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/lightview/lightview.css"/>

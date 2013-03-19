@@ -5,6 +5,7 @@
 
 /******************** META BOX DEFINITIONS ********************/
 // Prefix of meta keys
+global $prefix;
 $prefix = 'products_';
 
 global $meta_boxes;
@@ -15,7 +16,7 @@ $meta_boxes = array();
 $meta_boxes[] = array(
 	'id' => 'product_information',
 	'title' => 'Product Information',
-	'pages' => array('products', 'page'),
+	'pages' => array('products'),
 	'context' => 'side',
 	'priority' => 'high',
 
@@ -64,26 +65,4 @@ $meta_boxes[] = array(
 	)
 );
 
-/******************** META BOX REGISTERING *******************/
-/**
- * Register meta boxes
- *
- * @return void
- */
-function products_register_meta_boxes()
-{
-	// Make sure there's no errors when the plugin is deactivated or
-	// during upgrade
-	if (!class_exists('RW_Meta_Box'))
-		return;
-	
-	global $meta_boxes;
-	foreach ($meta_boxes as $meta_box)
-	{
-		new RW_Meta_Box($meta_box);
-	}
-}
-
-// Hook to 'admin_init' to make sure the meta box class is loaded before
-add_action('admin_init', 'products_register_meta_boxes');
 ?>
